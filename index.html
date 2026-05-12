@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joy Junction | Cyberpunk Lifestyle Hub</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#07010f;
+      color:white;
+      overflow-x:hidden;
+      line-height:1.6;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+      radial-gradient(circle at top left, rgba(212,0,255,0.20), transparent 35%),
+      radial-gradient(circle at bottom right, rgba(106,0,255,0.15), transparent 35%),
+      radial-gradient(circle at center, rgba(0,255,255,0.05), transparent 50%);
+      z-index:-2;
+    }
+
+    .grid{
+      position:fixed;
+      inset:0;
+      background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size:40px 40px;
+      z-index:-1;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      padding:18px 8%;
+      position:fixed;
+      top:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      backdrop-filter:blur(12px);
+      background:rgba(10,10,20,0.45);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      z-index:999;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo img{
+      width:55px;
+      height:55px;
+      object-fit:cover;
+      border-radius:50%;
+      border:2px solid #c800ff;
+      box-shadow:
+      0 0 15px #c800ff,
+      0 0 35px rgba(200,0,255,0.7);
+    }
+
+    .logo h1{
+      font-size:24px;
+      letter-spacing:2px;
+      color:#f2c2ff;
+      text-shadow:
+      0 0 10px #ff00ff,
+      0 0 25px #9d00ff;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:28px;
+    }
+
+    nav ul li a{
+      transition:0.3s;
+      font-size:15px;
+    }
+
+    nav ul li a:hover{
+      color:#f18dff;
+      text-shadow:0 0 10px #ff00ff;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:120px 8% 80px;
+      position:relative;
+    }
+
+    .hero-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:60px;
+      align-items:center;
+      width:100%;
+      max-width:1300px;
+    }
+
+    .hero-text h2{
+      font-size:72px;
+      line-height:1.1;
+      margin-bottom:25px;
+      text-transform:uppercase;
+      color:white;
+      text-shadow:
+      0 0 10px #ff00ff,
+      0 0 30px #9d00ff,
+      0 0 60px rgba(255,0,255,0.8);
+    }
+
+    .hero-text p{
+      color:#d9c8ff;
+      font-size:20px;
+      margin-bottom:40px;
+      max-width:600px;
+    }
+
+    .cta-btn{
+      display:inline-block;
+      padding:16px 38px;
+      border-radius:50px;
+      background:linear-gradient(90deg,#ff00ff,#6f00ff);
+      color:white;
+      font-weight:bold;
+      font-size:17px;
+      transition:0.35s;
+      box-shadow:
+      0 0 15px #ff00ff,
+      0 0 40px rgba(255,0,255,0.6);
+    }
+
+    .cta-btn:hover{
+      transform:translateY(-4px) scale(1.04);
+      box-shadow:
+      0 0 25px #ff00ff,
+      0 0 60px rgba(255,0,255,0.9);
+    }
+
+    .hero-image{
+      position:relative;
+    }
+
+    .hero-image img{
+      width:100%;
+      border-radius:28px;
+      border:2px solid rgba(255,255,255,0.08);
+      box-shadow:
+      0 0 25px rgba(200,0,255,0.45),
+      0 0 80px rgba(111,0,255,0.25);
+    }
+
+    .hero-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:28px;
+      box-shadow:
+      inset 0 0 50px rgba(255,0,255,0.15);
+      pointer-events:none;
+    }
+
+    /* SECTION */
+
+    section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h3{
+      font-size:42px;
+      margin-bottom:16px;
+      color:#efb3ff;
+      text-shadow:0 0 15px #d100ff;
+    }
+
+    .section-title p{
+      max-width:720px;
+      margin:auto;
+      color:#cfc2f2;
+    }
+
+    /* FEATURES */
+
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .feature-card{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:35px;
+      border-radius:24px;
+      transition:0.35s;
+      position:relative;
+      overflow:hidden;
+      backdrop-filter:blur(10px);
+    }
+
+    .feature-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg, rgba(255,0,255,0.18), transparent);
+      opacity:0;
+      transition:0.3s;
+    }
+
+    .feature-card:hover::before{
+      opacity:1;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-10px);
+      border-color:#d100ff;
+      box-shadow:
+      0 0 25px rgba(209,0,255,0.4),
+      0 0 50px rgba(111,0,255,0.25);
+    }
+
+    .feature-icon{
+      font-size:42px;
+      margin-bottom:20px;
+    }
+
+    .feature-card h4{
+      font-size:24px;
+      margin-bottom:12px;
+      color:#f6d7ff;
+    }
+
+    .feature-card p{
+      color:#d3c7f0;
+      font-size:15px;
+    }
+
+    /* ABOUT */
+
+    .about{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:40px;
+      align-items:center;
+    }
+
+    .about-box{
+      background:rgba(255,255,255,0.04);
+      border-radius:24px;
+      padding:40px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 0 25px rgba(140,0,255,0.15);
+    }
+
+    .about-box h4{
+      font-size:30px;
+      margin-bottom:20px;
+      color:#f2b9ff;
+    }
+
+    .about-box p{
+      color:#d7cdf4;
+      margin-bottom:18px;
+    }
+
+    /* CONTACT */
+
+    .contact-box{
+      max-width:760px;
+      margin:auto;
+      text-align:center;
+      background:rgba(255,255,255,0.05);
+      padding:50px;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:
+      0 0 25px rgba(209,0,255,0.25);
+    }
+
+    .contact-box h4{
+      font-size:36px;
+      margin-bottom:18px;
+      color:#f0b6ff;
+    }
+
+    .contact-box p{
+      color:#d9cef6;
+      margin-bottom:12px;
+    }
+
+    footer{
+      text-align:center;
+      padding:28px 20px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.03);
+      color:#a891d8;
+      font-size:14px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero-text h2{
+        font-size:48px;
+      }
+
+      .hero-text p{
+        font-size:18px;
+      }
+
+      .section-title h3{
+        font-size:34px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="grid"></div>
+
+  <!-- NAV -->
+
+  <nav>
+
+    <div class="logo">
+      <img src="ChatGPT Image 12 พ.ค. 2569 15_36_15.png" alt="Joy Junction Logo">
+      <h1>JOY JUNCTION</h1>
+    </div>
+
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-container">
+
+      <div class="hero-text">
+
+        <h2>
+          ENTER THE<br>
+          FUTURE OF FUN
+        </h2>
+
+        <p>
+          Joy Junction คือศูนย์รวมไลฟ์สไตล์ ความบันเทิง เกม และคอมมูนิตี้
+          สำหรับคนรุ่นใหม่ในโลก Cyberpunk Lighting
+          ที่เต็มไปด้วยแสงนีออนและพลังแห่งการเชื่อมต่อ
+        </p>
+
+        <a href="#features" class="cta-btn">
+          Join The Experience
+        </a>
+
+      </div>
+
+      <div class="hero-image">
+        <img src="ChatGPT Image 12 พ.ค. 2569 15_36_15.png" alt="Joy Junction">
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section id="features">
+
+    <div class="section-title">
+      <h3>Experience Zones</h3>
+      <p>
+        พื้นที่ความสนุกที่รวม Gaming • Community • Lifestyle
+        ไว้ในโลกแห่งแสงนีออน
+      </p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h4>Gaming Arena</h4>
+        <p>
+          สนามเกมและ E-Sports สุดล้ำ พร้อมระบบแสง Cyberpunk เต็มรูปแบบ
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">☕</div>
+        <h4>Neon Café</h4>
+        <p>
+          คาเฟ่สุดล้ำ พร้อมเครื่องดื่มและมุมถ่ายรูปนีออนสำหรับสายคอนเทนต์
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎵</div>
+        <h4>Live Music</h4>
+        <p>
+          โซนดนตรีสดและกิจกรรมกลางคืนสำหรับวัยทำงานและสายปาร์ตี้
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🕹️</div>
+        <h4>Retro Zone</h4>
+        <p>
+          พื้นที่สำหรับผู้เล่นเฉพาะกลุ่มและเกมย้อนยุคสุดคลาสสิก
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👨‍👩‍👧</div>
+        <h4>Family Lounge</h4>
+        <p>
+          พื้นที่พักผ่อนและกิจกรรมสำหรับครอบครัวยุคใหม่
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h4>Creative Events</h4>
+        <p>
+          เวิร์กชอป อีเวนต์ และ Community Space สำหรับคนมีแพชชัน
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-title">
+      <h3>About Joy Junction</h3>
+    </div>
+
+    <div class="about">
+
+      <div class="about-box">
+
+        <h4>Game • Community • Connection</h4>
+
+        <p>
+          Joy Junction คือจุดรวมตัวของคนรุ่นใหม่ที่รักเกม ดนตรี
+          ความคิดสร้างสรรค์ และการเชื่อมต่อในโลกดิจิทัล
+        </p>
+
+        <p>
+          เราสร้างประสบการณ์ใหม่ผ่านแสง Neon Cyberpunk
+          และบรรยากาศแห่งอนาคต ที่ทั้งสนุก ทันสมัย และแตกต่าง
+        </p>
+
+      </div>
+
+      <div class="about-box">
+
+        <h4>Why Choose Us?</h4>
+
+        <p>✔ Cyberpunk Lighting Experience</p>
+        <p>✔ Gaming + Lifestyle ครบในที่เดียว</p>
+        <p>✔ Community สำหรับคนรุ่นใหม่</p>
+        <p>✔ มุมถ่ายรูป Neon สุดล้ำ</p>
+        <p>✔ พื้นที่สำหรับทุกวัย</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="section-title">
+      <h3>Contact Us</h3>
+      <p>
+        พร้อมเข้าสู่โลกแห่งแสงนีออนและความสนุกแล้วหรือยัง?
+      </p>
+    </div>
+
+    <div class="contact-box">
+
+      <h4>JOY JUNCTION</h4>
+
+      <p>Email: hello@joyjunction.com</p>
+      <p>Phone: +66 98-888-8888</p>
+      <p>Open Daily : 10:00 AM - Midnight</p>
+
+      <br>
+
+      <a href="#" class="cta-btn">
+        Start Your Journey
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 Joy Junction — Cyberpunk Lifestyle & Entertainment Hub
+  </footer>
+
+</body>
+</html>
